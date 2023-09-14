@@ -6,25 +6,19 @@ package ppt3;
 
 public class MainClass {
 	
+	//메서드
 	public static void main(String[] args) {
 		
-		Person han = new Person("han", 26 , "960000-2000000");
-		Student cho = new Student("cho", 21, "910000-1000000", "한직교", 1, 3);
+		MyImplements imp = new MyImplements();
 		
-		han.greeting();
-		System.out.println("-------------------------------");
-
-		cho.greeting();
-		System.out.println("-------------------------------\n\n");
+		//imp.method1();
+		//imp.methmod2();
 		
-		cho.changeName("Cho Young Ja");
-		han.greeting();
-		System.out.println("-------------------------------");
-		
-		cho.greeting();
-		System.out.println("-------------------------------");
-		
+		System.out.println(imp.VALUE1);
+		System.out.println(imp instanceof MyImplements);
+		System.out.println(imp instanceof Myinterface);
 		
 	}
+	
 }
 
