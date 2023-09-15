@@ -9,15 +9,27 @@ public class MainClass {
 	//메서드
 	public static void main(String[] args) {
 		
-		MyImplements imp = new MyImplements();
+		//OuterClass.fnStatic();
 		
-		//imp.method1();
-		//imp.methmod2();
+		//OuterClass test = new OuterClass();
+		//test.fnTest2();
 		
-		System.out.println(imp.VALUE1);
-		System.out.println(imp instanceof MyImplements);
-		System.out.println(imp instanceof Myinterface);
 		
+		//OuterClass.StaticNestedClass staticClass = new OuterClass.StaticNestedClass();
+		//staticClass.display();
+		
+		
+		OuterClass outerClass = new OuterClass();
+		
+		OuterClass.NonStaticNestedClass nestedClass = outerClass.new NonStaticNestedClass("first");
+		OuterClass.NonStaticNestedClass nestedClass2 = outerClass.new NonStaticNestedClass("second");
+		OuterClass.NonStaticNestedClass nestedClass3 = outerClass.new NonStaticNestedClass("third");
+		
+		nestedClass.display();
+		nestedClass2.display();
+		nestedClass3.display();
+		
+		System.out.println(outerClass.getCnt());
 	}
 	
 }

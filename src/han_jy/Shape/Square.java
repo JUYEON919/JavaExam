@@ -1,4 +1,4 @@
-package han_jy;
+package han_jy.Shape;
 
 public class Square extends Shape_abstract {
 	

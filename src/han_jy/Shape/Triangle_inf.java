@@ -1,6 +1,6 @@
-package han_jy;
+package han_jy.Shape;
 
-public class Triangle_inf implements Shape_Interface {
+public class Triangle_inf implements Shape_Interface, Shape_perimeter {
 	//면적구할거
 	private double base; // 밑변
     private double height; // 높이

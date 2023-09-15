@@ -5,13 +5,6 @@ package ppt3;
  */
 public abstract class Shape {
 	
-	protected int cnt;
-	public Shape() {
-		System.out.println("Shape()의 생성자");
-	}
-	
-	//추상메서드정의, 구현되지않음
-	//자식 클래스에서 반드시 재정의해야한다!!!!!!
 	public abstract double calculateArea();
 	
 	public void print() {

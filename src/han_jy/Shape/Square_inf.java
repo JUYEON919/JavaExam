@@ -1,6 +1,6 @@
-package han_jy;
+package han_jy.Shape;
 
-public class Square_inf implements Shape_Interface {
+public class Square_inf implements Shape_Interface, Shape_perimeter {
 	private double width; // 너비
     private double height; // 높이
 

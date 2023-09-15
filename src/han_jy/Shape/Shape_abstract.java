@@ -1,4 +1,4 @@
-package han_jy;
+package han_jy.Shape;
 
 public abstract class Shape_abstract {
 

@@ -1,4 +1,4 @@
-package han_jy;
+package han_jy.Shape;
 
 public class Triangle extends Shape_abstract {
 
