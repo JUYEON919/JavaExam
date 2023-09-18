@@ -4,45 +4,17 @@ import java.util.Scanner;
 public class MainClass {
 
 	public static void main(String[] args) {
+		double target = -10.5;
 		
-		UpDownGame game = new UpDownGame(); // 난수발생
-		int input = 0;
-		
-		try(Scanner scann = new Scanner(System.in)){
-			
-			while (true) {
-				
-				// 정수 입력했을때
-				if(scann.hasNextInt()) {
-					input = scann.nextInt();
-					if(input <=0 || input > 100) {
-						throw new NumberFormatException("1~100만 입력 가능합니다.");
-					}
-					if(game.chkNum(input)) {
-						break;
-					}
-				// 종료 문자 입력 시
-				} else if (scann.hasNext("q") || scann.hasNext("quit")) {
-					throw new UserQuitException("게임을 종료합니다.");
-				} else if(scann.hasNext()) {
-					throw new NumberFormatException("뭘 입력한거야!!!");
-				}
-			}
-			
-		} catch (NumberFormatException e) {
-			System.out.println(e);
-		} catch (UserQuitException e) {
-			System.out.println(e);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		
+		System.out.println("abs : " + Math.abs(target));			//절대값
+		System.out.println("ceil : " + Math.ceil(target));			//올림 (주어진 수보다 크거나 같은 최소의 정수)
+		System.out.println("floor : " + Math.floor(target));			//내림 (주어진 수보다 작거나 같은 최대의 정수)
+		System.out.println("round : " + Math.round(target));			//반올림 (주어진 수 반올림하여 가까운 정수)
+		System.out.println("pow : " + Math.pow(target, target));	//반올림 (주어진 수 반올림 하여 가까운 정수)
+		System.out.println("sqrt : " + Math.sqrt(target));			//주어진 값의 제곱근 반환
+		System.out.println("sin : " + Math.sin(target));			//주어진 각도의 사인 값
+		System.out.println("log : " + Math.log(target));			//주어진 값의 자연로그 값
 	}
 
 }
 
-class UserQuitException extends Exception{
-	public UserQuitException(String message) {
-		super(message);
-	}
-}
