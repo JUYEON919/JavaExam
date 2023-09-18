@@ -6,21 +6,20 @@ public class MainClass {
 
 	public static void main(String[] args) {
 
-		LocalDate currentDate = LocalDate.now();
-		System.out.println(currentDate);
+		String strJava = "Java";
+		String strJava2 = new String("Java");
 		
-		LocalDate specificDate = LocalDate.of(2023,  3, 1);
-		System.out.println(specificDate);
+		if(strJava == strJava2) {
+			System.out.println("== 비교연산으로 " + strJava + "와" + strJava2 + " 는 같다");
+		}else {
+			System.out.println("== 비교연산으로 " + strJava + "와" + strJava2 + " 는 다르다");
+		}
 		
-		System.out.println(specificDate.getDayOfWeek());
-		System.out.println(specificDate.getDayOfYear());
-		
-		System.out.println(specificDate.getMonth());
-		System.out.println(specificDate.getMonthValue());
-		
-		System.out.println(specificDate.isLeapYear());
-		
-		System.out.println(specificDate.plusDays(100));
+		if(strJava.equals(strJava2)) {
+			System.out.println("equals 비교연산으로 " + strJava + "와" + strJava2 + " 는 같다");
+		}else {
+			System.out.println("equals 비교연산으로 " + strJava + "와" + strJava2 + " 는 다르다");
+		}
 		
 	}
 
