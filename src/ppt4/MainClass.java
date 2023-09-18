@@ -1,18 +1,30 @@
 package ppt4;
+import java.util.Scanner;
 
 public class MainClass {
+	
     public static void main(String[] args) {
-    	
-    	int result = 0;
-    	
+    
     	try {
+    		exceptionTest();
+    		System.out.println("예외처리 다음 main");
     		
-    		throw new MyCustomException("사용자 정의 예외 발생");
-    	}catch (Exception e) {
-    		System.out.println("catch : " + e);
-    	}finally {
-    		System.out.println("result : " + result);
-    		//db연결종료
+    	} catch (Exception e) {
+    		System.out.println(e);
+    	}
+
+    }
+    static void exceptionTest() {
+    	
+    	try(Scanner scann = new Scanner(System.in)){
+    	
+    		int input = scann.nextInt();
+    		int result = 10 / input;
+    		System.out.println("결과는 " + result + "입니다");
+    	
+    	} catch(Exception e) {
+    		
+    		System.out.println(e);
     	}
     }
 }
