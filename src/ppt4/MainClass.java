@@ -6,9 +6,8 @@ public class MainClass {
     	int result = 0;
     	
     	try {
-    		result = 10/0;
-    		//오류발생
     		
+    		throw new MyCustomException("사용자 정의 예외 발생");
     	}catch (Exception e) {
     		System.out.println("catch : " + e);
     	}finally {
