@@ -1,27 +1,29 @@
 package ppt4;
 
-import java.time.LocalDate;
 
 public class MainClass {
 
 	public static void main(String[] args) {
+		
+		String strJava = "Hello";
+		
+		System.out.println("String before    :" + strJava.hashCode() + " : " + strJava);
 
-		String strJava = "Java";
-		String strJava2 = new String("Java");
+		strJava += " Java";
+		System.out.println("String after    :" + strJava.hashCode() + " : " + strJava);
+		System.out.println();
 		
-		if(strJava == strJava2) {
-			System.out.println("== 비교연산으로 " + strJava + "와" + strJava2 + " 는 같다");
-		}else {
-			System.out.println("== 비교연산으로 " + strJava + "와" + strJava2 + " 는 다르다");
-		}
+		StringBuffer strbJava = new StringBuffer("Hello");
+		System.out.println("StringBuffer before    :" + strbJava.hashCode() + " : " + strbJava);
+		System.out.println(strbJava.capacity());
 		
-		if(strJava.equals(strJava2)) {
-			System.out.println("equals 비교연산으로 " + strJava + "와" + strJava2 + " 는 같다");
-		}else {
-			System.out.println("equals 비교연산으로 " + strJava + "와" + strJava2 + " 는 다르다");
-		}
-		
+		strbJava.append(" Java!!");
+		System.out.println("StringBuffer after    :" + strbJava.hashCode() + " : " + strbJava);
+		System.out.println(strbJava.capacity());
+	
 	}
+	
+	
 
 }
 
