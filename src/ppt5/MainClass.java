@@ -1,43 +1,37 @@
 package ppt5;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class MainClass {
 
 	public static void main(String[] args) {
+		//선언/생성
+		Vector<Integer> intVec = new Vector<Integer>();
+		List<Integer> intVec2 = new Vector<Integer>();
 		
-		/*
-		Integer[] intArr = new Integer[] {1,2,3};
-		printArray(intArr);
+		//생성과 동시에 초기화
+		Vector<Integer> intVec3 = new Vector<>(Arrays.asList(1,2,3,4,5));
 		
-		String[] strArr = new String[] {"banana", "kiwi", "melon"};
-		printArray(strArr);
-		*/
+		Vector<Integer> intVec4 = new Vector<>(List.of(10,20,30));
 		
-		List<MyParent> parent = Arrays.asList(new MyParent());
-		List<Me> me = Arrays.asList(new Me());
-		List<MyChild> child = Arrays.asList(new MyChild());
+		System.out.println(intVec3.size());
 		
-		printSuperList(parent);
-		printSuperList(me);
-		//printSuperList(child);
-
-		//printExtendsList(parent);
-		printExtendsList(me);
-		printExtendsList(child);
+		//값 대입
+		//intVec.add(10);
+		//System.out.println(intVec.size());
+		
+		intVec3.addAll(Arrays.asList(6,7)); //그냥 add는안된다
+		//범위기반
+		for(var elem: intVec3) {
+			System.out.println(elem);
+		}
+		
+		for(int i = 0; i < intVec4.size(); i++) {
+			System.out.println(intVec4.get(i));
+		}
 		
 		
-	}
-	static void printSuperList(List<? super Me> c) {
-		c.add(new Me());
-	}
-	static void printExtendsList(List<? extends Me> c) {
-		//c.add(new Me());
+		
 	}
 }
-	class MyParent{}
-	class Me extends MyParent{}
-	class MyChild extends Me{}
-
 
