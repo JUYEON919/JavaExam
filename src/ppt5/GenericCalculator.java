@@ -2,7 +2,7 @@ package ppt5;
 
 import java.util.Scanner;
 
-public class GenericCalculator<T extends Number> {
+public class GenericCalculator<T extends Number> {//<T extends Number>스트링은 못온다
     private T num1;
     private T num2;
 
