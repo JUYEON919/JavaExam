@@ -6,25 +6,20 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		
-		Queue<Integer> que1 = new LinkedList<>();
-		Queue<Integer> que2 = new PriorityQueue<>();
+		HashSet<Integer> scoreSet = new HashSet<>();
 		
-		que1.offer(20);
-		que1.offer(50);
-		que1.offer(30);
+		scoreSet.add(10);
+		scoreSet.add(20);
+		scoreSet.add(10);
 		
-		while(!que1.isEmpty()) {
-			System.out.print(que1.poll() + " ");
-		}
-		System.out.println();
+		System.out.println(scoreSet.size());
 		
-		//
-		que2.offer(20);
-		que2.offer(50);
-		que2.offer(30);
+		scoreSet.forEach(score->System.out.print(score + " "));
 		
-		while(!que2.isEmpty()) {
-			System.out.print(que2.poll() + " ");
+		if(scoreSet.contains(30)) {
+			System.out.println("30점 있음");
+		}else {
+			System.out.println("30점 없음");
 		}
 		
 		
