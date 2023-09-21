@@ -1,37 +1,20 @@
 package ppt5;
 
+import java.util.Scanner;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		
-		//Runnable r = new MyRunnable();
-		//t.start();
-		Thread t1 = new MyThread();
-		Thread t2 = new Thread(new MyRunnable());
+		Thread timerThread = new Thread(new TimerRunnable());
+		timerThread.start();
 		
-		t1.start();
-		try {
-			//t1 thread가 종료될때까지 대기
-			t1.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try(Scanner scanner = new Scanner(System.in)){
+			System.out.println("숫자 입력");
+			int input = scanner.nextInt();
+			System.out.println("입력된 숫자는" + input + "입니다");
+			timerThread.interrupt();
 		}
-		t2.start();
-		
-		
-		for(int i = 0; i < 100 ; i++) {
-			System.out.print(3);
-		}
-		
-//		int cnt = 1;
-//		int sum = 0;
-//		while(cnt <=10) {
-//			sum = sum+cnt;
-//			System.out.println("+" + cnt++ + "=" + sum);
-//		}
-		
 		
 		
 	}//main
