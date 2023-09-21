@@ -1,53 +1,87 @@
 package ppt5;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		
-		HashMap<String, Double> map = new HashMap<>();
-		map.put("Linux", 77.5);
-		map.put("MariaDB", 73.0);
-		map.put("C", 65.0);
-		map.put("C++", 65.0);
-		map.putAll(Map.of("Java", 50.0, "Network", 50.0));
-		map.put("Java", 63.0);
+		//Runnable r = new MyRunnable();
+		//t.start();
+		Thread t1 = new MyThread();
+		Thread t2 = new Thread(new MyRunnable());
 		
-		/*
-		//순회
-		for(String key : map.keySet()) {
-			System.out.println(key + " : " + map.get(key));
+		t1.start();
+		try {
+			//t1 thread가 종료될때까지 대기
+			t1.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		map.forEach((key, value)-> {
-			System.out.println(key + " : " + value);
-		});
-		*/
-		/*
-		for(Map.Entry<String, Double> elem : map.entrySet()) {
-			System.out.println(elem.getKey() + " : " + elem.getValue());
-		}*/
+		t2.start();
 		
-		//조회
-		System.out.println(map.containsKey("Linux"));
-		System.out.println(map.containsKey(100.0));
 		
-		Set<String> subject = map.keySet();
-		
-		System.out.println(subject.size());
-		for(var elem : subject) {
-			System.out.println(elem);
-		}
-		Collection<Double> scores = map.values();
-		System.out.println(scores.size());
-		for(var elem : scores) {
-			System.out.println(elem);
+		for(int i = 0; i < 100 ; i++) {
+			System.out.print(3);
 		}
 		
+//		int cnt = 1;
+//		int sum = 0;
+//		while(cnt <=10) {
+//			sum = sum+cnt;
+//			System.out.println("+" + cnt++ + "=" + sum);
+//		}
+		
+		
+		
+	}//main
+}//class
+
+class TimerRunnable implements Runnable{
+	
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(10000);
+			System.out.println("시간이 초과했슴돠");
+			
+			System.exit(0);
+		}catch (InterruptedException e) {
+			System.out.println("10초안에 입력하였으므로 스레드 종료");
+		}
 	}
 }
 
+class MyRunnable implements Runnable{
+	
+	@Override
+	public void run() {
+		for(int i = 0; i < 100 ; i++) {
+			System.out.print(2);
+		}
+		
+//		int cnt = 1;
+//		int multipl = 1;
+//		
+//		while(cnt <=10) {
+//			multipl = multipl * cnt;
+//			System.out.println("x" + cnt++ + "=" + multipl);
+//		}
+
+	}//run
+}
+
+
+class MyThread extends Thread{
+	
+	@Override
+	public void run() {
+		
+		for(int i = 0; i < 100 ; i++) {
+			System.out.print(1);
+		}
+		
+		
+	}//run
+	
+}//MyThread
