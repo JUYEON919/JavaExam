@@ -1,6 +1,7 @@
-package ppt5;
+package idk_1;
 
-public class MainClass {
+
+public class CounterExam {
 	
 	public static int counter = 0; // 공유 변수로 사용할 카운터
 	public static int incCnt = 0; // 증가 스레드의 작업 횟수를 저장하는 변수
@@ -50,7 +51,7 @@ public class MainClass {
 		}
 	}
 	
-	public static class DecrementThread implements Runnable {
+	static class DecrementThread implements Runnable {
 		@Override
 		public void run() {
 			synchronized(obj) { // 락 객체를 사용하여 동기화

@@ -8,6 +8,7 @@ public class MainClass {
 		
 		UpDownGame game = new UpDownGame(); // 난수발생
 		int input = 0;
+		game.startTimeoutThread();//타임오버추가한부분
 		
 		try(Scanner scann = new Scanner(System.in)){
 			

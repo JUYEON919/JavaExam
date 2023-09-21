@@ -14,6 +14,8 @@ public class UpDownGame{
 	private final int MAX = 10;
 	private int cnt = 0;
 	
+	private boolean isTimeout = false; //타임오버추가
+	
 	public UpDownGame() {
 		
 		Random rand = new Random();
@@ -46,6 +48,30 @@ public class UpDownGame{
 		System.out.println("종료 시간 : " + endTime.format(formatter) );
 		return true;
 	}
+	
+	
+	public void startTimeoutThread() {//타임오버추가한부분
+	    Thread timeoutThread = new Thread(new Runnable() {
+	        @Override
+	        public void run() {
+	            try {
+	                Thread.sleep(30000); // 30초 대기
+	                if (!isTimeout) {
+	                    System.out.println("TimeOver 게임 종료!");
+	                    System.exit(0);
+	                }
+	            } catch (InterruptedException e) {
+	                System.out.println("타임아웃 스레드가 중단되었습니다.");
+	            }
+	        }
+	    });
+	    timeoutThread.start();
+	}
+
+	public boolean isTimeout() {
+	    return isTimeout;
+	}
+
 
 }
 
