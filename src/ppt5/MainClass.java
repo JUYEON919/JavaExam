@@ -1,73 +1,107 @@
 package ppt5;
 
-public class MainClass {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Vector;
+
+public class MainClass{
 	
-	public static int counter = 0; // 공유 변수로 사용할 카운터
-	public static int incCnt = 0; // 증가 스레드의 작업 횟수를 저장하는 변수
-	public static int decCnt = 0; // 감소 스레드의 작업 횟수를 저장하는 변수
-	private static final Object obj = new Object(); // 스레드 동기화를 위한 락 객체
+	private static Vector<Account> accounts = new Vector<Account>(); // 계좌를 저장하는 벡터
+	Random rand = new Random(); // 랜덤 값을 생성하기 위한 랜덤 객체
 	
 	public static void main(String[] args) {
-		Thread incrementT = new Thread(new IncrementThread()); // 증가 스레드 생성
-		Thread decrementT = new Thread(new DecrementThread()); // 감소 스레드 생성
 		
-		incrementT.start(); // 증가 스레드 시작
-		decrementT.start(); // 감소 스레드 시작
+		// 객체를 만들어야 하는 경우
+		// 스레드(계좌 개설) 
+		
+		// 계좌 10개 개설
+		Thread thread;
+		for(int i=0; i<10;i++) {
+			thread = new Thread(()->{
+				accounts.add(new Account()); //새계좌 생성해서 저장
+			});
+			thread.start();
+		}
 		
 		try {
-			incrementT.join(); // 증가 스레드가 종료될 때까지 대기
-			decrementT.join(); // 감소 스레드가 종료될 때까지 대기
+			Thread.sleep(3000); //3초대기
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
+		System.out.println(Account.getCNT()); //계좌수출력
+
 		try {
-			Thread.sleep(3000); // 3초 동안 대기
+			Thread.sleep(1000); //결과볼려고1초대기
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Counter: " + counter + ", intCnt" + incCnt + ", decCnt" + decCnt);
-	}// main
+		// 스레드(입급/출금)
+		MainClass myBank = new MainClass();
+		List<Thread> deposits = new ArrayList<>();
+		List<Thread> withdraws = new ArrayList<>();
+		
+		for(int i=0; i<10;i++) {
+			deposits.add(myBank.new Deposit()); //입금스레드생성
+			withdraws.add(myBank.new Withdraw());//출금스레드생성
+		}
+		
+		for(var desposit:deposits) {
+			desposit.start(); //입금스레드시작
+		}
+		
+		for(var withdraw:withdraws) {
+			withdraw.start(); //출금스레드시작
+		}
+		
+		try {
+			Thread.sleep(3000); //3초대기
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		for(var account:accounts) {
+			System.out.println(account.getAccountNo() + " 계좌의 잔액 : " + account.getBalance());
+		}
+
+	}
 	
-	static class IncrementThread implements Runnable {
+	class Deposit extends Thread{
 		@Override
 		public void run() {
-			synchronized(obj) { // 락 객체를 사용하여 동기화
-				for(int i = 0; i < 10; i++) {
-					if(i == 5) {
-						try {
-							obj.wait(); // 스레드를 대기 상태로 전환
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					incCnt++;
-					System.out.println("(+)" + ++counter + " "); // 카운터 증가 및 출력
-				}
-				obj.notify(); // 대기 중인 다른 스레드를 깨움
+			// 입금
+			int account;
+			int amount;
+			
+			account = rand.nextInt(10);//랜덤계좌선택
+			amount = rand.nextInt(10000) + 1; //랜덤금액생성(입금해줄거)
+			
+			Account target = accounts.get(account);
+			target.deposit(amount); // 입금
+			System.out.println(target.getAccountNo() + ", " + amount + "원 입금 완료 : 잔액(" + target.getBalance() + ")");
+		}
+	}
+	
+	
+	class Withdraw extends Thread{
+		@Override
+		public void run() {
+			// 출금
+			int account;
+			int amount;
+			 
+			account = rand.nextInt(10); //램덤계좌선택
+			amount = rand.nextInt(10000) + 1;//랜덤금액생성(출금할거)
+			
+			Account target = accounts.get(account);
+			if(target.withdraw(amount)) { // 출금
+				System.out.println(target.getAccountNo() + ", " + amount + "원 출금 완료 : 잔액(" + target.getBalance() + ")");
+			} else {
+				System.out.println(target.getAccountNo() + ", " + amount + "원 출금 실패 : 잔액(" + target.getBalance() + ") 잔액부족" );
 			}
 		}
 	}
 	
-	public static class DecrementThread implements Runnable {
-		@Override
-		public void run() {
-			synchronized(obj) { // 락 객체를 사용하여 동기화
-				for(int i = 0; i < 10; i++) {
-					if(i == 7) {
-						obj.notify(); // 대기 중인 다른 스레드를 깨움
-						try {
-							obj.wait(); // 스레드를 대기 상태로 전환
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-					decCnt++;
-					System.out.println("(-)" + --counter + " "); // 카운터 감소 및 출력
-				}
-				obj.notify(); // 대기 중인 다른 스레드를 깨움
-			}
-		}
-	}
-}// class
+}
