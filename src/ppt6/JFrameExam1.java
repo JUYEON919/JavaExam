@@ -3,6 +3,7 @@ package ppt6;
 import java.awt.FlowLayout;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JFrameExam1 {
@@ -16,73 +17,60 @@ public class JFrameExam1 {
 		// 2) JFrame 위치/ 크기 설정
 		frame.setSize(600, 500); //크기
 		frame.setLocation(100, 200); //위치
-		frame.setLayout(new FlowLayout(FlowLayout.LEFT)); //버튼
+		frame.setLayout(new FlowLayout());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JMenuBar menuBar = new JMenuBar();
+		Object[][] data = {
+				{"홍길동", 30, "남자"},
+				{"임꺽정", 25, "여자"},
+				{"장길산", 27, "남자"},
+		};
 		
-		JMenu fileMenu = new JMenu("파일(F)");	
+		String[] columns = {"이름", "나이", "성별"};
 		
-		JMenuItem newItem = new JMenuItem("새로만들기(N)");	
-		JMenuItem windowItem = new JMenuItem("새창(P)");
-		JMenuItem openItem = new JMenuItem("열기(O)");
-		JMenuItem saveItem = new JMenuItem("저장(S)");
+		DefaultTableModel tableModel = new DefaultTableModel(data, columns);
 		
-		fileMenu.add(newItem);
-		fileMenu.add(windowItem);
-		fileMenu.add(openItem);
-		fileMenu.addSeparator(); //구분선
-		fileMenu.add(saveItem);
+		JTable table = new JTable(tableModel);
+		//table.setEnabled(false); //화면에서 입력(수정)못하게
 		
+		JScrollPane scrollPane = new JScrollPane(table);
 		
-		JMenu editMenu = new JMenu("폅집(E)");
-		JMenu formatMenu = new JMenu("서식(O)");
-		JMenu viewMenu = new JMenu("보기(V)");
-		JMenu helpMenu = new JMenu("도움말(H)");
-		
-		menuBar.add(fileMenu);
-		menuBar.add(editMenu);
-		menuBar.add(formatMenu);
-		menuBar.add(viewMenu);
-		menuBar.add(helpMenu);
-		
-		frame.setJMenuBar(menuBar);
-		
-		//트리구조만들기
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode("192.168.1.1");
-		
-		DefaultMutableTreeNode ipsLog = new DefaultMutableTreeNode("DBMS 침입탐지 로그");
-		DefaultMutableTreeNode searchLog = new DefaultMutableTreeNode("로그 조회");
-		
-		root.add(ipsLog);
-		root.add(searchLog);
-		
-		ipsLog.add(new DefaultMutableTreeNode("기본 탐지 정책"));
-		ipsLog.add(new DefaultMutableTreeNode("사용자 정의 정책"));
-		
-		searchLog.add(new DefaultMutableTreeNode("서비스 로그"));
-		searchLog.add(new DefaultMutableTreeNode("기타"));
-		
-		JTree tree = new JTree(root);
-		JScrollPane scrollPane = new JScrollPane(tree);
 		frame.add(scrollPane);
 		
 		
 		
 		
-//		JLabel label = new JLabel("JLabel");
-//		frame.add(label);
-//		
-//		JTextField textField = new JTextField("JTextField");
-//		frame.add(textField);
-//		
-//		JTextArea textArea = new JTextArea("JTextArea");
-//		frame.add(textArea);
-//		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		/*
+		// 콤보박스
+		String[] options = {"C", "C++", "Java"};
+		JComboBox<String> comboBox = new JComboBox<String>(options);
+		frame.add(comboBox);
+		*/
+		/*
+		//라이오버튼
+		String[] caption = {"C", "C++", "Java"};
+		JRadioButton[] radio = new JRadioButton[caption.length];
+		ButtonGroup radioGrp = new ButtonGroup();
+			
+		for(int i = 0; i < caption.length; i++) {
+			radio[i] = new JRadioButton(caption[i]);
+			radioGrp.add(radio[i]);
+			frame.add(radio[i]);
+		}
+		*/
+		
+		/*
+		//체크박스
+		String[] caption = {"C", "C++", "Java"};
+		JCheckBox[] chkbox = new JCheckBox[caption.length];
+		
+		for(int i = 0; i < caption.length; i++) {
+			chkbox[i] = new JCheckBox(caption[i]);
+			frame.add(chkbox[i]);
+		}
+		*/
+		
 		// 3) 윈도우가 닫힐때의 동작 정의
-		
-		
-		
 		
 		// 4) 화면에 출력
 		frame.setVisible(true);
