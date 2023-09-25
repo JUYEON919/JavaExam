@@ -1,9 +1,9 @@
 package ppt6;
 
 import java.awt.FlowLayout;
+
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JFrameExam1 {
 
@@ -14,7 +14,7 @@ public class JFrameExam1 {
 		frame = new JFrame("JFrame 생성");
 		
 		// 2) JFrame 위치/ 크기 설정
-		frame.setSize(600, 400); //크기
+		frame.setSize(600, 500); //크기
 		frame.setLocation(100, 200); //위치
 		frame.setLayout(new FlowLayout(FlowLayout.LEFT)); //버튼
 		
@@ -47,15 +47,37 @@ public class JFrameExam1 {
 		
 		frame.setJMenuBar(menuBar);
 		
-		JLabel label = new JLabel("JLabel");
-		frame.add(label);
+		//트리구조만들기
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("192.168.1.1");
 		
-		JTextField textField = new JTextField("JTextField");
-		frame.add(textField);
+		DefaultMutableTreeNode ipsLog = new DefaultMutableTreeNode("DBMS 침입탐지 로그");
+		DefaultMutableTreeNode searchLog = new DefaultMutableTreeNode("로그 조회");
 		
-		JTextArea textArea = new JTextArea("JTextArea");
-		frame.add(textArea);
+		root.add(ipsLog);
+		root.add(searchLog);
 		
+		ipsLog.add(new DefaultMutableTreeNode("기본 탐지 정책"));
+		ipsLog.add(new DefaultMutableTreeNode("사용자 정의 정책"));
+		
+		searchLog.add(new DefaultMutableTreeNode("서비스 로그"));
+		searchLog.add(new DefaultMutableTreeNode("기타"));
+		
+		JTree tree = new JTree(root);
+		JScrollPane scrollPane = new JScrollPane(tree);
+		frame.add(scrollPane);
+		
+		
+		
+		
+//		JLabel label = new JLabel("JLabel");
+//		frame.add(label);
+//		
+//		JTextField textField = new JTextField("JTextField");
+//		frame.add(textField);
+//		
+//		JTextArea textArea = new JTextArea("JTextArea");
+//		frame.add(textArea);
+//		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 3) 윈도우가 닫힐때의 동작 정의
 		
