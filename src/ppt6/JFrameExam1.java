@@ -18,12 +18,35 @@ public class JFrameExam1 {
 		frame.setLocation(100, 200); //위치
 		frame.setLayout(new FlowLayout(FlowLayout.LEFT)); //버튼
 		
-		JButton button;
-//		for(int i = 1; i <= 5; i++) {
-//			button = new JButton("JButton" + i);
-//			frame.add(button);
-//		}
-//		
+		JMenuBar menuBar = new JMenuBar();
+		
+		JMenu fileMenu = new JMenu("파일(F)");	
+		
+		JMenuItem newItem = new JMenuItem("새로만들기(N)");	
+		JMenuItem windowItem = new JMenuItem("새창(P)");
+		JMenuItem openItem = new JMenuItem("열기(O)");
+		JMenuItem saveItem = new JMenuItem("저장(S)");
+		
+		fileMenu.add(newItem);
+		fileMenu.add(windowItem);
+		fileMenu.add(openItem);
+		fileMenu.addSeparator(); //구분선
+		fileMenu.add(saveItem);
+		
+		
+		JMenu editMenu = new JMenu("폅집(E)");
+		JMenu formatMenu = new JMenu("서식(O)");
+		JMenu viewMenu = new JMenu("보기(V)");
+		JMenu helpMenu = new JMenu("도움말(H)");
+		
+		menuBar.add(fileMenu);
+		menuBar.add(editMenu);
+		menuBar.add(formatMenu);
+		menuBar.add(viewMenu);
+		menuBar.add(helpMenu);
+		
+		frame.setJMenuBar(menuBar);
+		
 		JLabel label = new JLabel("JLabel");
 		frame.add(label);
 		
