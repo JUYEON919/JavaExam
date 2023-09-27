@@ -1,7 +1,6 @@
 package ppt6;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,7 @@ public class TicTacTokGame extends JFrame {
     private static final int BOARD_SIZE = 3;
 
     private char[][] board = new char[BOARD_SIZE][BOARD_SIZE];
-    private char currentPlayer = 'X'; //현재 플레이어
+    private char currentPlayer = 'X'; //현재 플레이어7
 
     private JButton[][] buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
     private JButton startButton; // 시작 버튼 추가
